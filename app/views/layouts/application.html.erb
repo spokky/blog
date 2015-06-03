@@ -38,48 +38,58 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header"
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Blog</a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
+      	<h3>
+      	 <%= link_to root_path do %>Blog<% end %>
+      	</h3>
+      </div>
+
+      <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2">
+        <ul class="nav navbar-nav navbar-right">
+    	    <% if current_user %>
+            <li>Signed in as: <%= current_user.name %> - <%= image_tag(@auth['info']['image'], width: '50', heigth: '50', class:'img-circle') %></li>
+            <li><%= link_to "Sign out", "sign_out", method: :delete %></li>
+    	    <% else %>
+            <li><%= link_to "auth/facebook" do %><%= image_tag('facebook.png', width: '20', heigth: '20', class:'img-circle') %><% end %></li>
+            <li><%= link_to "auth/twitter" do %><%= image_tag('twitter.png', width: '20', heigth: '20', class:'img-circle') %><% end %></li>
+            <li><%= link_to "auth/github" do %><%= image_tag('github.png', width: '20', heigth: '20', class:'img-circle') %><% end %></li>
+            <li><%= link_to "auth/linkedin" do %><%= image_tag('linkedin.png', width: '20', heigth: '20', class:'img-circle') %><% end %></li>
+            <li><%= link_to "auth/google_oauth2" do %><%= image_tag('google.png', width: '20', heigth: '20', class:'img-circle') %><% end %></li>
+    	    <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </div>
+      <div class="col-lg-3">
+        <div class="well sidebar-nav">
+          <h3>Sidebar</h3>
+          <ul class="nav nav-list">
             <li><%= link_to "Link1", "/path1"  %></li>
             <li><%= link_to "Link2", "/path2"  %></li>
             <li><%= link_to "Link3", "/path3"  %></li>
           </ul>
-        </div>
-      </div>
-    </div>
+        </div><!--/.well -->
+      </div><!--/span-->
+    </div><!--/row-->
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2015</p>
-      </footer>
-
-    </div> <!-- /container -->
+    <footer>
+      <p>&copy; Company 2015</p>
+    </footer>
+  </div> <!-- /container -->
 
   </body>
 </html>
