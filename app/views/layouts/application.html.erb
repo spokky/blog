@@ -78,7 +78,14 @@
 
     <footer>
       <lu>&copy; Spokky</lu> / 
-      <lu><%= link_to "Area Riservata", "https://mail.inphotech.com"  %></lu>
+      <lu><%= link_to "Area Riservata", "https://mail.inphotech.com"  %></lu> /
+      <lu>
+        <% if current_user %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path %>
+        <% end %>
+      </lu>
     </footer>
   </div> <!-- /container -->
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
   get 'home/profile' => 'home#profile'
   get 'home/index' => 'home#index'
   get 'auth/:provider/callback', to: "sessions#create" 
